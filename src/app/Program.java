@@ -19,15 +19,21 @@ public class Program {
 		ResultSet rs = st.executeQuery("select * from tb_product");
 			
 		while (rs.next()) {
-			Product p = new Product();
-			p.setId(rs.getLong("Id"));
-			p.setDescription(rs.getString("description"));
-			p.setName(rs.getString("name"));
-			p.setImageUri(rs.getString("image_uri"));
-			p.setPrice(rs.getDouble("price"));
 			
+			Product p = instanciandoProduto(rs);
 			
 			System.out.println(p);
 		}
+	}
+	
+	//Criando um método para instanciar um objeto
+	private static Product instanciandoProduto(ResultSet rs) throws SQLException  {
+		Product p = new Product();
+		p.setId(rs.getLong("Id"));
+		p.setDescription(rs.getString("description"));
+		p.setName(rs.getString("name"));
+		p.setImageUri(rs.getString("image_uri"));
+		p.setPrice(rs.getDouble("price"));
+		return p;
 	}
 }
